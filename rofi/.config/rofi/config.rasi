@@ -1,0 +1,9 @@
+configuration {
+  modi: "window,run,ssh";
+  display-drun: "Applications";
+  display-window: "Windows";
+	font: "JetBrains Mono 12";
+	show-icons: true;
+  icon-theme: "Papirus";
+}
+@theme "./theme.rasi"

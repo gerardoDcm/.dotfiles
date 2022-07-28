@@ -1,0 +1,108 @@
+######### interpreter for shell commands
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"  # default already
+set scrolloff 10
+set icons
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/scope'
+
+############ COMANDOS ##########################
+cmd mkdir %mkdir -p "$@"
+
+cmd open %mimeo "$f"
+
+cmd delete %rm -rf $fx
+cmd trash %set -f; mv $fx ~/.local/share/Trash/files/
+
+cmd bulkrename ${{
+    vimv --git -- $(basename -a -- $fx)
+
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
+}}
+
+cmd newfold ${{
+    set -f
+    printf "Directory name: "
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+
+cmd setbg ${{
+  feh --bg-fill "$f"
+  }}
+
+cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename-without-extension &basename -a -- $fx | rev | cut -d. -f2- | rev | head -c-1 | xclip -i -selection clipboard
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+
+# define a custom 'rename' command without prompt for overwrite
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+# map r push :rename<space>
+
+
+cmd extract $aunpack $f
+
+# compress current file or selected files with tar and gunzip
+cmd compress ${{
+    set -f
+    printf "File name and extension: "
+    read FNAME
+    extension="${FNAME##*.}"
+    FNAME="${FNAME%.*}"
+    mkdir $FNAME
+    cp -r $fx $FNAME
+    apack $FNAME.$extension $FNAME
+    rm -rf $FNAME
+}}
+
+####### ATAJOS ###############################
+map <enter> shell
+map e
+map f
+
+map gd cd ~/Documents/
+map gD cd ~/Downloads/
+map gs cd ~/sync/
+map gv cd ~/Videos/
+map gm cd ~/Music/
+map gp cd ~/Pictures/
+
+map o open
+
+map ad push :mkdir<space>
+map an newfold
+map ae extract
+map ac compress
+
+map Dd delete
+map DD trash
+
+map R bulkrename
+map bg setbg
+
+map Yp yank-path
+map Yd yank-dirname
+map Yb yank-basename
+map Yn yank-basename-without-extension
+
+map f :fzf_jump
+
+map ee $$EDITOR "$f"
+map es $sudoedit "$f"

@@ -1,0 +1,4 @@
+#!/bin/sh
+#BITRATE=$1
+FLAC_DIR=$1
+fd . ${FLAC_DIR} -t f -e flac -x ffmpeg -i "{}" -q 1 -map_metadata 0 -id3v2_version 3 "{.}.mp3" && fd . ${FLAC_DIR} -t f -e flac -x rm

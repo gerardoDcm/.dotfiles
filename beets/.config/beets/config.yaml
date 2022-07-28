@@ -1,0 +1,114 @@
+directory: ~/Music/gmusic
+library: ~/Music/gmusic/gmusic.db
+
+plugins: bpm convert lastgenre mbsync embedart fetchart discogs scrub inline deezer
+#lastgenre
+#fromfilename 
+singletons: no
+asciify_paths: no
+per_disc_numbering: yes
+
+import:
+    incremental: no
+    move: yes
+    copy: no
+    write: yes
+    timid: yes
+    languages: en jp es
+    from_scratch: yes
+    group_albums: yes
+    duplicate_action: ask
+    resume: yes
+
+paths:
+  #albumtype:soundtrack: Soundtracks/$album%aunique{} ($format%if{$bitdepth, $bitdepth-$samplerate})/%if{$multidisc,$disc-}$track $title
+    #    default: $albumartist/$album%aunique{}/$track $title
+    #default: Album/%if{$albumartist_sort, $albumartist_sort, $albumartist}/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+    default: Album/$albumartist/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+    singleton: Album/$albumartist/$album%aunique{}/$title
+    releasetype:single: Album/$albumartist/$album%aunique{}/$title
+    albumtype:soundtrack: Soundtracks/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+    genre:Soundtrack: Sountracks/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+    genre:soundtrack: Soundtracks/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+    comp: Compilations/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
+replace:
+    '[\\/]': _
+    '^\.': _
+    '[,]': ''
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': ''
+    '\.$': ''
+    '\s+$': ''
+    '^\s+': ''
+    '^-': _
+
+match:
+    preferred:
+        countries: ['US', 'GB|UK']
+        media: ['Digital Media|File', 'Digital', 'CD']
+        original_year: no
+
+ui:
+    color: yes
+    colors:
+        text_success: green
+        text_warning: yellow
+        text_error: red
+        text_highlight: red
+        text_highlight_minor: lightgray
+        action_default: turquoise
+        action: blue
+
+# Plugins configuration
+convert:
+    auto: no
+    copy_album_art: no
+    dest: ~/Music/lossy
+    never_convert_lossy_files: yes
+    format: opus
+    formats:
+        opus:
+            command: opusenc --bitrate 264 $source $dest
+            extension: ogg
+        mp3:
+            command: ffmpeg -i $source -acodec libmp3lame -q:a 0 -map_metadata 0 -id3v2_version 3 $dest 
+            extension: mp3
+
+embedart:
+    auto: no
+
+lastgenre:
+    auto: yes
+    fallback: ''
+# source: track
+    count: 3
+
+fetchart:
+    cautious: true
+    auto: no
+    sources:
+        - coverart: release
+        - albumart: release
+        - coverart: releasegroup
+        - amazon
+        - itunes
+        - filesystem
+
+#    midwidth: 400
+#    enforce_ratio: 30px
+
+discogs:
+    user_token: nsxvTUVRhpgTOWegeNEtIhisktnppMJFUZwtinZe
+
+zero:
+    keep_fields: images art
+
+match:
+    preferred:
+        countries: ['US', 'GB|UK', 'JP', 'MX']
+        media: ['Digital Media|File', 'Digital', 'CD']
+        original_year: no
+

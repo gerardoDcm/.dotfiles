@@ -1,0 +1,4 @@
+#!/bin/sh
+#BITRATE=$1
+FLAC_DIR=$1
+fd . ${FLAC_DIR} -t f -e flac -x opusenc --bitrate 256 --music --vbr "{}" "{.}.ogg" && fd . ${FLAC_DIR} -t f -e flac -x rm

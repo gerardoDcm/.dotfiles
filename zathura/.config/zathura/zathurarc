@@ -1,0 +1,32 @@
+# Open Document in fit-width mode by default
+set adjust-open "best-fit"
+
+# Enable copy to clipboard
+set selection-clipboard clipboard
+
+# Side-by-side mode
+set first-page-column 1:1
+
+# Monitor size
+#set window-height 843
+#set window-width 1570
+
+# Separation in pixels
+set page-padding 1
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+
+# Stop at page boundaries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+set render-loading "false"
+
+map = zoom in
+
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+

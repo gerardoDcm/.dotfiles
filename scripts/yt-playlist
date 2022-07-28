@@ -1,0 +1,20 @@
+#!/bin/bash
+URL=$1
+yt-dlp --format "(bv[height<=1080][fps>=30]/bv[height<=1080][fps<=30]/bv)+(ba[acodec^=opus]/ba)/best" \
+--verbose \
+--force-ipv4 \
+--sleep-requests 1 \
+--sleep-interval 5 \
+--max-sleep-interval 5 \
+--ignore-errors \
+--no-continue \
+--no-overwrites \
+--add-metadata \
+--embed-thumbnail \
+--embed-subs \
+--output "~/Videos/playlists/%(playlist)s [%(uploader)s]/%(upload_date)s %(title)s [%(id)s].%(ext)s" "${URL}" \
+/
+
+
+
+

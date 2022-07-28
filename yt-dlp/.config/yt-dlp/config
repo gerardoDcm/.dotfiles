@@ -1,0 +1,19 @@
+--format (bestvideo[height<=1080][fps>=30]/bestvideo[height<=1080][fps<=30]/bestvideo)+(bestaudio[acodec^=opus]/bestaudio)/best
+--no-playlist
+--force-ipv4 
+--sleep-requests 1 
+--sleep-interval 5 
+--max-sleep-interval 10
+--ignore-errors 
+--no-continue 
+--no-overwrites 
+--netrc
+#--cookies-from-browser firefox
+#--write-thumbnail
+#--embed-thumbnail
+--add-metadata 
+--all-subs 
+--embed-subs 
+--compat-options no-live-chat
+--output "~/Videos/ver-borrar/%(title)s [%(uploader)s][%(upload_date)s][%(id)s].%(ext)s" 
+--merge-output-format "mkv"
