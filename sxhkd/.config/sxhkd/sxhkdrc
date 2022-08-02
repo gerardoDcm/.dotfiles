@@ -140,11 +140,17 @@ Print
 
 # Emacs
 super + shift + m
-	emacs
+	emacsclient -c -a 'emacs'
 
 #volume up/down
-XF86Audio{Mute,RaiseVolume,LowerVolume}
-	amixer -q set Master {toggle,1%+,1%-}
+#XF86Audio{Mute,RaiseVolume,LowerVolume}
+	#amixer -q set Master {toggle,1%+,1%-}
+XF86AudioMute
+	pamixer -t
+XF86AudioRaiseVolume
+	pamixer -i 2
+XF86AudioLowerVolume
+	pamixer -d 2
 
 # brightness down
 XF86MonBrightnessDown
