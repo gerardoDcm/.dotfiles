@@ -1,7 +1,8 @@
 directory: ~/Music/gmusic
 library: ~/Music/gmusic/gmusic.db
 
-plugins: bpm convert lastgenre mbsync embedart fetchart discogs scrub inline deezer
+plugins: bpm convert lastgenre mbsync embedart fetchart discogs scrub inline
+#deezer
 #lastgenre
 #fromfilename 
 singletons: no
