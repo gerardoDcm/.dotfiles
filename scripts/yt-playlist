@@ -7,11 +7,13 @@ yt-dlp --format "(bv[height<=1080][fps>=30]/bv[height<=1080][fps<=30]/bv)+(ba[ac
 --sleep-interval 5 \
 --max-sleep-interval 5 \
 --ignore-errors \
+--ignore-config \
 --no-continue \
 --no-overwrites \
 --add-metadata \
 --embed-thumbnail \
 --embed-subs \
+--merge-output-format mkv \
 --output "~/Videos/playlists/%(playlist)s [%(uploader)s]/%(upload_date)s %(title)s [%(id)s].%(ext)s" "${URL}" \
 /
 
