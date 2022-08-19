@@ -1,0 +1,11 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+picom &
+dunst &
+tint2 &
+nm-applet &
+~/.fehbg &
+setxkbmap -layout us -variant altgr-intl &
