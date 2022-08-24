@@ -2,3 +2,10 @@ Nsxiv.window.background: #1a1b26
 Nsxiv.window.foreground: #2ac3de
 Nsxiv.bar.font: JetBrains Mono
 Xcursor.theme: Pop
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.hinting: 1
+Xft.hintstyle: hintnone
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
