@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh &
 #mpDris2 &
 #udiskie &
-picom -b 
+picom -b
 
 ~/.fehbg &
 # nm-applet &

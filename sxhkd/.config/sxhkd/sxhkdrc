@@ -131,6 +131,7 @@ super + alt + shift + s
 super + alt + shift + l
 	bspc quit
 
+##### Custom Keybindings ######
 super + e
   lf
 
