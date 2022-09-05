@@ -7,6 +7,7 @@ playlist_editor_display_mode = columns
 progressbar_look = )>-
 display_bitrate = no
 display_remaining_time = no
+execute_on_song_change = songinfo
 
 ##### INTERFAZ ALTERNATIVA ######
 alternative_header_first_line_format = $b$(179)$aqqu$/a$9 {$(111)%t}|{%f}$9{ - $(109)%a$9} $(179)$atqq$/a$9$/b
